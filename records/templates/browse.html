@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block subtitle %} - Browse Records{% endblock %}
+{% block content %}
+{% if letter == 'num' %}
+	<h2>Browse Records - #</h2>
+{% else %}
+	<h2>Browse Records - {{letter|upper}}</h2>
+{% endif %}
+<ul class="letters">
+	{% for let in letters %}
+		{% if let == letter %}
+			{% if let == 'num' %}
+				<li class="current letter"><a href="{% url 'records:browse' let %}">#</a></li>
+			{% else %}
+				<li class="current letter"><a href="{% url 'records:browse' let %}">{{let|upper}}</a></li>
+			{% endif %}
+		{% elif let == 'num' %}
+			<li class="letter"><a href="{% url 'records:browse' let %}">#</a></li>
+		{% else %}
+			<li class="letter"><a href="{% url 'records:browse' let %}">{{let|upper}}</a></li>
+		{% endif %}
+	{% endfor %}
+</ul>
+<ul class="games">
+	{% for game in game_list %}
+		<li class="game"><a href="{% url 'records:record' game.name %}" class="name">{{game.name}}</a></span>
+			<ul class="categories">
+				{% for cat in game.category_set.all %}
+					<li><a href="{% url 'records:record' game.name cat.name %}" class="category">{{cat.name}}</a></li>
+				{% endfor %}
+			</ul>
+		</li>
+	{% endfor %}
+</ul>
+<ul class="pageNav">
+		{% if page_obj.has_previous %}
+			<a href="{% url 'records:browse' letter=letter page=page_obj.previous_page_number %}"><li class="adjPage">&lt;</li></a>
+		{% endif %}
+		{% for p in pages %}
+			{% if p != page_obj.number %}
+				<a href="{% url 'records:browse' letter=letter page=p %}"><li class="pageNum">{{p}}</li></a>
+			{% else %}
+				<li class="pageNum">{{p}}</li>
+			{% endif %}
+		{% endfor %}
+		{% if page_obj.has_next %}
+			<a href="{% url 'records:browse' letter=letter page=page_obj.next_page_number %}"><li class="adjPage">&gt;</li></a>
+		{% endif %}
+</ul>
+{% endblock %}

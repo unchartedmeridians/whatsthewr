@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block subtitle %} - Submit a Record{% endblock %}
+{% block content %}
+    <h2>Submit a Record</h2>
+    <div id="form-panel">
+        <div id="form-panel-interior">
+            <form action="{% url 'records:submit' %}" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    </script>
+    <script
+ src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js">
+    </script>
+    <script src="{% static 'records/ajax/game_autocomplete.js' %}"></script>
+    <script src="{% static 'records/ajax/category_autocomplete.js' %}">
+    </script>
+{% endblock %}

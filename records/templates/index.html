@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block subtitle %} - Latest Records{% endblock %}
+{% block content %}
+<h2>Latest Records</h2>
+	{% if record_list %}
+		{% for record in record_list %}
+			<div class="recordBlurb">
+				<p class="blurbTime">
+					{% if record.time|time:'H' != '00' %}
+						{{ record.time|time:'G:i:s' }}
+					{% else %}
+						{{ record.time|time:'i:s' }}
+					{% endif %}
+				</p>
+				<p class="recordTitle"><a href="{% url 'records:record' game_name=record.game.name category=record.category %}">{{record.game.name}} ({{record.category.name}})</a></p>
+				<p class="blurbRunner">by {{record.runner}}</p>
+				<p class="blurbDate">{{record.date_added|date:'m/d/y'}}</p>
+			</div>
+		{% endfor %}
+	{% else %}
+		<p>No records are available.</p>
+	{% endif %}
+	<ul class="pageNav">
+		{% if page_obj.has_previous %}
+			<a href="{% url 'records:page' page_obj.previous_page_number %}"><li class="adjPage">&lt;</li></a>
+		{% endif %}
+		{% for p in pages %}
+			{% if p != page_obj.number %}
+				<a href="{% url 'records:page' page=p %}"><li class="pageNum">{{p}}</li></a>
+			{% else %}
+				<li class="pageNum">{{p}}</li>
+			{% endif %}
+		{% endfor %}
+		{% if page_obj.has_next %}
+			<a href="{% url 'records:page' page_obj.next_page_number %}"><li class="adjPage">&gt;</li></a>
+		{% endif %}
+	</ul>
+{% endblock %}

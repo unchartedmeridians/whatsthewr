@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block subtitle %} - Review Submitted Records {% endblock %}
+{% block content %}
+<h2>Review Submissions</h2>
+<div id="form-panel"><div id="form-panel-interior"><form action="{% url 'records:review' %}" method="post">{% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Approve" />
+</form></div></div>
+{% endblock %}

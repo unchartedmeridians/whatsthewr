@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block subtitle %} - Submit Successful{% endblock %}
+{% block content %}
+<h2>Submit Successful</h2>
+<div id="successful-message">Thanks for submitting a new record! Your submission will now be forwarded to our admin team for approval. Click <a href="{% url 'records:index' %}">here</a> to return to the front page</div>
+{% endblock %}

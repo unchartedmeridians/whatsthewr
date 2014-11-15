@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block subtitle %} - Pending Records{% endblock %}
+{% block content %}
+<h2>Pending Records</h2>
+<ul class="games">
+    {% for record in pending_list %}
+        <li class="game"><a href="" class="name">{{record.game_as_text}}</a></span></li>
+    {% endfor %}
+</ul>
+{% endblock %}

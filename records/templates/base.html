@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>What's the WR?{% block subtitle %}{% endblock %}</title>
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700" rel="stylesheet" type="text/css" />
+        <link href="{% static 'records/styles/style.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'records/styles/jquery-ui-1.10.3.custom.min.css' %}" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div id="header">
+            <div id="headerInt">
+                <a href="/"><img src="{% static 'records/images/logo.png' %}" width="80" height="80" />
+                    <span id="logoText">
+                        <p class="mainText">What's the WR?</p>
+                        <p class="tagLine">hey im sexy girl and i strim on webcam</p>
+                    </span>
+                </a>
+                {% if user.is_authenticated %}
+                <div id="logged-in-text">
+                    <div>Logged in as <span id="username">{{ user.username }}</span></div>
+                    <a id="logout-link" href="{% url 'records:logout' %}">Log Out</a>
+                </div>
+                {% else %}
+                    <ul id="loginList">
+                        <form action="{% url 'records:login' %}" name="login" method="post">
+                            {% csrf_token %}
+                            <li><input type="text" name="username"></li>
+                            <li><input type="password" name="password"></li>
+                            <li><input type="submit" value="Log In"></li>
+                        </form>
+                    </ul>
+                {% endif %}
+                    <ul id="navOptions">
+                        <li><a href="{% url 'records:index' %}">Latest</a></li>
+                        <li><a href="{% url 'records:browse' %}">Browse</a></li>
+                        <li><a href="{% url 'records:submit' %}">Submit</a></li>
+                        <li><a href="/">Search</a></li>
+                    </ul>
+            </div>
+        </div>
+        <div id="mainContent">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>
