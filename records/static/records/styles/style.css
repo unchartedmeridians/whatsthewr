@@ -243,10 +243,6 @@ object {
     font-weight:bold;
 }
 
-input {
-    border:1px solid #A0A0A0;
-    margin:5px;
-}
 
 #form-panel {
     background-color:#CACACA;
@@ -258,24 +254,12 @@ input {
     text-align:center;
 }
 
-#form-panel-interior {
+/* #form-panel-interior {
     position:relative;
     text-align:right;
     width:250px;
     margin:auto;
-}
-
-#category-choices {
-    text-align:left;
-    margin-left:62px;
-}
-
-.category-choices-label {
-}
-
-#new-category-input {
-    width: 85px;
-}
+} */
 
 ul .errorlist {
     text-align:center;
@@ -325,4 +309,21 @@ ul .errorlist {
 
 .games ul li:last-child:after {
     content: "";
+}
+
+label {
+    display:inline-block;
+    clear:left;
+    width: 50px;
+    text-align:right;
+}
+input {
+    display:inline-block;
+    text-align:left;
+    border:1px solid #A0A0A0;
+    margin:5px;
+}
+
+select {
+    margin:5px;
 }

@@ -101,7 +101,6 @@ def ajax_category_autocomplete(request):
                      .category_set.order_by('tab_index')]
         except Game.DoesNotExist:
             categories = []
-            return HttpResponse()
     return HttpResponse(json.dumps(categories))
 
 # View for retrieving the AJAX data for autocompletion of the Game field

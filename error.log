@@ -1,0 +1,14 @@
+﻿Soft reset
+00049e: IDB set to 9f
+0004a5: PRC set to 4c
+        Internal RAM enabled
+        Time base set to 2^20
+        Clock divider set to 2
+0004aa: Wrote 80 to special function register 0a
+0004be: Wrote 00 to special function register e1
+0004c4: Wrote 55 to special function register e8
+0004c4: Wrote 55 to special function register e9
+0004c9: PRC set to 0c
+        Internal RAM disabled
+        Time base set to 2^20
+        Clock divider set to 2
